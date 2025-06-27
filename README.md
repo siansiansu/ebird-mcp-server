@@ -2,7 +2,7 @@
 
 ![demo](demo.gif)
 
-這是一個結合 eBird API 與 Claude MCP (Model-Crafted Prompts) 的工具，讓使用者可以透過自然語言，直接在 Claude 的對話視窗中查詢豐富的鳥類觀測資料。
+這是一個結合 eBird API 與 Model Context Protocol (MCP) 的工具，讓使用者可以透過自然語言，直接在 Claude 的對話視窗中查詢鳥類觀測資料。
 
 ## 功能特色
 
@@ -35,9 +35,9 @@
 
 申請完成後，請將您的金鑰複製下來，稍後會用到。
 
-### 2. 安裝 Claude Desktop App
+### 2. 安裝 Claude 桌面應用程式
 
-本工具需要搭配 Claude 的桌面應用程式使用。請至官網下載並安裝：
+本工具需要搭配 Claude 桌面應用程式使用。請至官網下載並安裝：
 
 [https://claude.ai/download](https://claude.ai/download)
 
@@ -55,7 +55,7 @@ cd /path/to/ebird-mcp-server
 pip install -r requirements.txt
 ```
 
-### 2. 設定 Claude Desktop App
+### 2. 設定 Claude 桌面應用程式
 
 1.  打開 Claude 桌面應用程式。
 2.  點擊左下角的頭像，選擇 **Settings**。
