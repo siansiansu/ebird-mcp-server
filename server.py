@@ -1,6 +1,6 @@
 import os
 import sys
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from mcp.server.fastmcp import FastMCP
 
@@ -28,7 +28,7 @@ def log(*args: Any):
         print("[DEBUG]", *args, file=sys.stderr)
 
 
-def format_observations(observations: List[Dict]) -> str:
+def format_observations(observations: list[dict]) -> str:
     """Formats a list of observation dictionaries into a readable string."""
     if not observations:
         return "No observations found."
@@ -51,7 +51,7 @@ def format_observations(observations: List[Dict]) -> str:
     return "\n\n".join(lines)
 
 
-def format_hotspots(hotspots: List[Dict]) -> str:
+def format_hotspots(hotspots: list[dict]) -> str:
     """Formats a list of hotspot dictionaries into a readable string."""
     if not hotspots:
         return "No hotspots found."
@@ -73,7 +73,7 @@ def format_hotspots(hotspots: List[Dict]) -> str:
     return "\n\n".join(lines)
 
 
-def format_taxonomy(taxa: List[Dict]) -> str:
+def format_taxonomy(taxa: list[dict]) -> str:
     """Formats taxonomy data into a readable string."""
     if not taxa:
         return "No taxonomy data found."
@@ -88,14 +88,14 @@ def format_taxonomy(taxa: List[Dict]) -> str:
     return "\n\n".join(lines)
 
 
-def format_taxonomy_forms(forms: List[str]) -> str:
+def format_taxonomy_forms(forms: list[str]) -> str:
     """Formats taxonomy forms into a readable string."""
     if not forms:
         return "No taxonomy forms found."
     return "Taxonomy Forms:\n" + "\n".join(f"- {form}" for form in forms)
 
 
-def format_checklist(checklist: Dict) -> str:
+def format_checklist(checklist: dict) -> str:
     """Formats a checklist dictionary into a readable string."""
     if not checklist:
         return "Checklist not found."
@@ -116,7 +116,7 @@ def format_checklist(checklist: Dict) -> str:
     return "\n".join(lines)
 
 
-def format_checklists(checklists: List[Dict]) -> str:
+def format_checklists(checklists: list[dict]) -> str:
     """Formats a list of checklist dictionaries into a readable string."""
     if not checklists:
         return "No checklists found."
@@ -124,7 +124,7 @@ def format_checklists(checklists: List[Dict]) -> str:
     return "\n\n---\n\n".join(formatted_checklists)
 
 
-def format_regional_statistics(stats: Dict) -> str:
+def format_regional_statistics(stats: dict) -> str:
     """Formats regional statistics into a readable string."""
     if not stats:
         return "No regional statistics found."
@@ -136,15 +136,15 @@ def format_regional_statistics(stats: Dict) -> str:
     return "\n".join(lines)
 
 
-def format_species_list(species_list: List[Dict]) -> str:
+def format_species_list(species_list: list[dict]) -> str:
     """Formats a list of species into a readable string."""
     if not species_list:
         return "No species found."
     lines = [f"- {s.get('comName', 'N/A')} ({s.get('sciName', 'N/A')})" for s in species_list]
-    return "Species List:\n" + "\n".join(lines)
+    return "Species list:\n" + "\n".join(lines)
 
 
-def format_regions(regions: List[Dict]) -> str:
+def format_regions(regions: list[dict]) -> str:
     """Formats a list of regions into a readable string."""
     if not regions:
         return "No regions found."
@@ -152,7 +152,7 @@ def format_regions(regions: List[Dict]) -> str:
     return "Regions:\n" + "\n".join(lines)
 
 
-def format_hotspot_info(hotspot_info: Dict) -> str:
+def format_hotspot_info(hotspot_info: dict) -> str:
     """Formats hotspot information into a readable string."""
     if not hotspot_info:
         return "No hotspot information found."
@@ -166,7 +166,7 @@ def format_hotspot_info(hotspot_info: Dict) -> str:
     return "\n".join(lines)
 
 
-def format_taxa_locale_codes(locale_codes: List[Dict]) -> str:
+def format_taxa_locale_codes(locale_codes: list[dict]) -> str:
     """Formats a list of taxa locale codes into a readable string."""
     if not locale_codes:
         return "No taxa locale codes found."
@@ -174,7 +174,7 @@ def format_taxa_locale_codes(locale_codes: List[Dict]) -> str:
     return "Taxa Locale Codes:\n" + "\n".join(lines)
 
 
-def format_taxonomy_versions(versions: List[Dict]) -> str:
+def format_taxonomy_versions(versions: list[dict]) -> str:
     """Formats a list of taxonomy versions into a readable string."""
     if not versions:
         return "No taxonomy versions found."
@@ -182,7 +182,7 @@ def format_taxonomy_versions(versions: List[Dict]) -> str:
     return "Taxonomy Versions:\n" + "\n".join(lines)
 
 
-def format_taxonomic_groups(groups: List[Dict]) -> str:
+def format_taxonomic_groups(groups: list[dict]) -> str:
     """Formats a list of taxonomic groups into a readable string."""
     if not groups:
         return "No taxonomic groups found."
@@ -190,7 +190,7 @@ def format_taxonomic_groups(groups: List[Dict]) -> str:
     return "Taxonomic Groups:\n" + "\n".join(lines)
 
 
-def format_region_info(region_info: Dict) -> str:
+def format_region_info(region_info: dict) -> str:
     """Formats region information into a readable string."""
     if not region_info:
         return "No region information found."
@@ -213,12 +213,12 @@ def format_region_info(region_info: Dict) -> str:
 )
 async def ebird_get_recent_observations(
     regionCode: str,
-    back: Optional[int] = None,
-    maxResults: Optional[int] = None,
-    includeProvisional: Optional[bool] = None,
-    hotspot: Optional[bool] = None,
-    detail: Optional[str] = None,
-) -> Dict:
+    back: int | None = None,
+    maxResults: int | None = None,
+    includeProvisional: bool | None = None,
+    hotspot: bool | None = None,
+    detail: str | None = None,
+) -> dict:
     """1. Get recent observations in a region.
 
     :param regionCode: The regional code (e.g., US-NY).
@@ -244,10 +244,10 @@ async def ebird_get_recent_observations(
 )
 async def ebird_get_notable_observations(
     regionCode: str,
-    back: Optional[int] = None,
-    maxResults: Optional[int] = None,
-    detail: Optional[str] = None,
-) -> Dict:
+    back: int | None = None,
+    maxResults: int | None = None,
+    detail: str | None = None,
+) -> dict:
     """2. Get recent notable observations in a region.
 
     :param regionCode: The regional code.
@@ -272,11 +272,11 @@ async def ebird_get_notable_observations(
 async def ebird_get_recent_observations_for_species(
     regionCode: str,
     speciesCode: str,
-    back: Optional[int] = None,
-    maxResults: Optional[int] = None,
-    includeProvisional: Optional[bool] = None,
-    hotspot: Optional[bool] = None,
-) -> Dict:
+    back: int | None = None,
+    maxResults: int | None = None,
+    includeProvisional: bool | None = None,
+    hotspot: bool | None = None,
+) -> dict:
     """3. Get recent observations of a species in a region.
 
     :param regionCode: The regional code.
@@ -307,12 +307,12 @@ async def ebird_get_recent_observations_for_species(
 async def ebird_get_nearby_observations(
     lat: float,
     lng: float,
-    dist: Optional[int] = None,
-    back: Optional[int] = None,
-    maxResults: Optional[int] = None,
-    includeProvisional: Optional[bool] = None,
-    hotspot: Optional[bool] = None,
-) -> Dict:
+    dist: int | None = None,
+    back: int | None = None,
+    maxResults: int | None = None,
+    includeProvisional: bool | None = None,
+    hotspot: bool | None = None,
+) -> dict:
     """4. Get recent nearby observations.
 
     :param lat: Latitude.
@@ -341,11 +341,11 @@ async def ebird_get_nearby_observations_for_species(
     lat: float,
     lng: float,
     speciesCode: str,
-    dist: Optional[int] = None,
-    back: Optional[int] = None,
-    maxResults: Optional[int] = None,
-    includeProvisional: Optional[bool] = None,
-) -> Dict:
+    dist: int | None = None,
+    back: int | None = None,
+    maxResults: int | None = None,
+    includeProvisional: bool | None = None,
+) -> dict:
     """5. Get recent nearby observations of a species.
 
     :param lat: Latitude.
@@ -378,11 +378,11 @@ async def ebird_get_nearest_observations_for_species(
     lat: float,
     lng: float,
     speciesCode: str,
-    dist: Optional[int] = None,
-    back: Optional[int] = None,
-    maxResults: Optional[int] = None,
-    includeProvisional: Optional[bool] = None,
-) -> Dict:
+    dist: int | None = None,
+    back: int | None = None,
+    maxResults: int | None = None,
+    includeProvisional: bool | None = None,
+) -> dict:
     """6. Get nearest observations of a species.
 
     :param lat: Latitude.
@@ -414,10 +414,10 @@ async def ebird_get_nearest_observations_for_species(
 async def ebird_get_nearby_notable_observations(
     lat: float,
     lng: float,
-    dist: Optional[int] = None,
-    back: Optional[int] = None,
-    maxResults: Optional[int] = None,
-) -> Dict:
+    dist: int | None = None,
+    back: int | None = None,
+    maxResults: int | None = None,
+) -> dict:
     """7. Get recent nearby notable observations.
 
     :param lat: Latitude.
@@ -447,9 +447,9 @@ async def ebird_get_historic_observations(
     year: int,
     month: int,
     day: int,
-    back: Optional[int] = None,
-    maxResults: Optional[int] = None,
-) -> Dict:
+    back: int | None = None,
+    maxResults: int | None = None,
+) -> dict:
     """Get historic observations on a date.
 
     :param regionCode: The regional code.
@@ -481,7 +481,7 @@ async def ebird_get_top100(
     year: int,
     month: int,
     day: int,
-) -> Dict:
+) -> dict:
     """1. Get the top 100 contributors on a given date for a country or region.
 
     :param regionCode: The regional code.
@@ -502,7 +502,7 @@ async def ebird_get_top100(
 )
 async def ebird_get_recent_checklists_feed(
     regionCode: str,
-) -> Dict:
+) -> dict:
     """2. Get information on the most recently submitted checklists for a region.
 
     :param regionCode: The regional code.
@@ -522,7 +522,7 @@ async def ebird_get_checklist_feed_on_date(
     year: int,
     month: int,
     day: int,
-) -> Dict:
+) -> dict:
     """3. Get information on the checklists submitted on a given date for a country or region.
 
     :param regionCode: The regional code.
@@ -546,7 +546,7 @@ async def ebird_get_regional_statistics_on_date(
     year: int,
     month: int,
     day: int,
-) -> Dict:
+) -> dict:
     """4. Get a summary of the number of checklist submitted, species seen and contributors on a given date for a country or region.
 
     :param regionCode: The regional code.
@@ -567,7 +567,7 @@ async def ebird_get_regional_statistics_on_date(
 )
 async def ebird_get_species_list_for_region(
     regionCode: str,
-) -> Dict:
+) -> dict:
     """5. Get a list of species codes ever seen in a region, in taxonomic order (species taxa only)
 
     :param regionCode: The regional code.
@@ -583,7 +583,7 @@ async def ebird_get_species_list_for_region(
 )
 async def ebird_get_checklist_details(
     checklistId: str,
-) -> Dict:
+) -> dict:
     """6. Get the details and observations of a checklist.
 
     :param checklistId: The ID of the checklist (e.g., S12345678).
@@ -600,7 +600,7 @@ async def ebird_get_checklist_details(
 )
 async def ebird_get_adjacent_regions(
     regionCode: str,
-) -> Dict:
+) -> dict:
     """1. With the ref/geo end-point you can find a country's or region's neighbours.
 
     :param regionCode: The regional code.
@@ -617,9 +617,9 @@ async def ebird_get_adjacent_regions(
 )
 async def ebird_get_hotspots(
     regionCode: str,
-    back: Optional[int] = None,
-    includeProvisional: Optional[bool] = None,
-) -> Dict:
+    back: int | None = None,
+    includeProvisional: bool | None = None,
+) -> dict:
     """1. Get the list of birding hotspots in a region.
 
     :param regionCode: The regional code.
@@ -643,9 +643,9 @@ async def ebird_get_hotspots(
 async def ebird_get_nearby_hotspots(
     lat: float,
     lng: float,
-    dist: Optional[int] = None,
-    back: Optional[int] = None,
-) -> Dict:
+    dist: int | None = None,
+    back: int | None = None,
+) -> dict:
     """2. Get the list of hotspots, within a radius of up to 50 kilometers, from a given set of coordinates.
 
     :param lat: Latitude.
@@ -669,7 +669,7 @@ async def ebird_get_nearby_hotspots(
 )
 async def ebird_get_hotspot_info(
     locId: str,
-) -> Dict:
+) -> dict:
     """3. Get information on the location of a hotspot.
 
     :param locId: The location ID of the hotspot.
@@ -685,10 +685,10 @@ async def ebird_get_hotspot_info(
     description="Get the taxonomy used by eBird.",
 )
 async def ebird_get_taxonomy(
-    locale: Optional[str] = None,
-    cat: Optional[str] = None,
-    fmt: Optional[str] = None,
-) -> Dict:
+    locale: str | None = None,
+    cat: str | None = None,
+    fmt: str | None = None,
+) -> dict:
     """1. Get the taxonomy used by eBird.
 
     :param locale: Language for common names.
@@ -709,7 +709,7 @@ async def ebird_get_taxonomy(
 )
 async def ebird_get_taxonomy_forms(
     speciesCode: str,
-) -> Dict:
+) -> dict:
     """2. For a species, get the list of subspecies recognised in the taxonomy. The results include the species that was passed in.
 
     :param speciesCode: The eBird code for the species.
@@ -723,7 +723,7 @@ async def ebird_get_taxonomy_forms(
     name="ebird_get_taxa_locale_codes",
     description="Returns the list of supported locale codes and names for species common names, with the last time they were updated. Use the accept-language header to get translated language names when available.",
 )
-async def ebird_get_taxa_locale_codes() -> Dict:
+async def ebird_get_taxa_locale_codes() -> dict:
     """3. Returns the list of supported locale codes and names for species common names, with the last time they were updated. Use the accept-language header to get translated language names when available."""
     log(f"Received ebird_get_taxa_locale_codes request")
     data = await ebird.get_taxa_locale_codes()
@@ -734,7 +734,7 @@ async def ebird_get_taxa_locale_codes() -> Dict:
     name="ebird_get_taxonomy_versions",
     description="Returns a list of all versions of the taxonomy, with a flag indicating which is the latest.",
 )
-async def ebird_get_taxonomy_versions() -> Dict:
+async def ebird_get_taxonomy_versions() -> dict:
     """4. Returns a list of all versions of the taxonomy, with a flag indicating which is the latest."""
     log(f"Received ebird_get_taxonomy_versions request")
     data = await ebird.get_taxonomy_versions()
@@ -747,7 +747,7 @@ async def ebird_get_taxonomy_versions() -> Dict:
 )
 async def ebird_get_taxonomic_groups(
     speciesGrouping: str,
-) -> Dict:
+) -> dict:
     """5. Get the list of species groups, e.g. terns, finches, etc.
 
     :param speciesGrouping: The species grouping (e.g., 'birds').
@@ -766,7 +766,7 @@ async def ebird_get_taxonomic_groups(
 )
 async def ebird_get_region_info(
     regionCode: str,
-) -> Dict:
+) -> dict:
     """1. Get information on the name and geographical area covered by a region.
 
     :param regionCode: The regional code.
@@ -783,7 +783,7 @@ async def ebird_get_region_info(
 async def ebird_get_sub_region_list(
     regionType: str,
     parentRegionCode: str,
-) -> Dict:
+) -> dict:
     """2. Get the list of sub-regions for a given country or region.
 
     :param regionType: The type of region (e.g., 'country', 'state').
